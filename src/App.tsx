@@ -54,10 +54,26 @@ const TestComponent = () => {
   );
 };
 
+const RootPage = () => {
+  const { navigate } = useSimpleNavigate();
+  return (
+    <div>
+      This is root page
+      <button
+        onClick={() => navigate("/test", { state: "state from ROOT PAGE" })}
+      >
+        navigate to test
+      </button>
+    </div>
+  );
+};
+
 function App() {
   return (
     <GlobalRouter>
       <RoutesList>
+        <Route path="/" component={<RootPage />} />
+
         <Route path="/kek/:id" component={<KekComponent />} />
         <Route path="/test" component={<TestComponent />} />
       </RoutesList>
